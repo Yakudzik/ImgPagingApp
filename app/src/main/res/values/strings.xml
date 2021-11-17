@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ImgPagingApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="main_loading_fragment">Loading…</string>
+    <string name="connection_error">Connection error</string>
+    <string name="retry">Retry</string>
+</resources>
