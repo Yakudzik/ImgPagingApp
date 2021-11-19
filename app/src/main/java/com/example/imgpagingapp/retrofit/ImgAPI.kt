@@ -1,7 +1,7 @@
 package com.example.imgpagingapp.retrofit
 
-import com.example.imgpagingapp.jsonModel.DataImage
-import okhttp3.OkHttpClient
+ import com.example.imgpagingapp.paging.DataImage
+  import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
-import java.util.concurrent.TimeUnit
 
 interface ImgAPI {
     @Headers(
@@ -17,12 +16,12 @@ interface ImgAPI {
         "Accept-Language: ru_RU",
         "Content-Type: application/json"
     )
-    @GET("/api/v2/lifestyle/feed?")
-      fun getJoke(
+    @GET("/api/v2/lifestyle/feed")
+    fun getImgsLinks(
         @Query("addressist_id") addressist: Int,
         @Query("addresist_id") addresist: Int,
         @Query("page") page: Int,
-    ): Call<DataImage.Data>
+    ): Call<DataImage>
 
     companion object {
         fun invoke(): ImgAPI {
@@ -32,7 +31,6 @@ interface ImgAPI {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .connectTimeout(10,TimeUnit.SECONDS)
                 .build()
 
             return Retrofit.Builder()
